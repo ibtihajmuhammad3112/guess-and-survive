@@ -24,21 +24,21 @@ string selectRandomWord() {
 int main() {
     // Title
     setColor(11);
-    cout << "\n=========================================\n";
-    cout << "           GUESS AND SURVIVE\n";
-    cout << "             HANGMAN GAME\n";
-    cout << "=========================================\n\n";
+    cout << "\n					=========================================\n";
+    cout << "        		 			     GUESS AND SURVIVE\n";
+    cout << "           					     HANGMAN GAME\n";
+    cout << "					=========================================\n\n";
 
     // Hanging Wood & Rope ASCII Art
     setColor(6); // Brownish (Yellow)
     cout << "        ___________\n";
     cout << "        |         |\n";
     cout << "        |         |\n";
+    cout << "        |         |\n";
+    cout << "        |         |\n";
     cout << "        |         O\n";
-    cout << "        |        /|\\\n";
-    cout << "        |        / \\\n";
-    cout << "        |\n";
-    cout << "     ___|___\n\n";
+    cout << "        |	 /|\\\n";
+    cout << "     ___|___     / \\\n\n";
 
     // Description
     setColor(10);
@@ -181,9 +181,28 @@ int main() {
     if (guessedWord == secretWord) {
     	setColor(3);
         cout << "\nCongratulations! You've guessed the word: " << secretWord << endl;
+            cout << "        ___________\n";
+    cout << "        |         |\n";
+    cout << "        |         |\n";
+    cout << "        |         |\n";
+    cout << "        |         \n";
+    cout << "        |         O\n";
+    cout << "        |	 /|\\\n";
+    cout << "     ___|___     / \\\n\n";
     } else {
+    	setColor(4);
         cout << "\nGame over! The word was: " << secretWord << endl;
-         setColor(7); // Reset to default color
+        
+             cout << "        ___________\n";
+    cout << "        |         |\n";
+    cout << "        |         |\n";
+    cout << "        |         O\n";
+     cout << "        |        /|\\ \n";
+    cout << "        |        / \\\n";
+    cout << "        |         \n";
+    cout << "        |	 \n";
+    cout << "     ___|___     \n\n";
+     setColor(7); // Reset to default color
     }
 
     return 0;
