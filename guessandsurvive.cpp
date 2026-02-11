@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
@@ -12,21 +13,34 @@ void setColor(int color) {
 }
 
 string selectRandomWord() {
+	
     vector<string> wordList;
     wordList.push_back("programming");
     wordList.push_back("condition");
     wordList.push_back("repitition");
+    wordList.push_back("variable");
+    wordList.push_back("function");
+    wordList.push_back("algorithm");
+    wordList.push_back("compiler");
+    wordList.push_back("comments");
+    wordList.push_back("operator");
+    wordList.push_back("hangman");
+    wordList.push_back("language");
+    
     srand(static_cast<unsigned int>(time(0)));
     int index = rand() % wordList.size();
     return wordList[index];
 }
 
 int main() {
+	setColor(4);
+	cout<<"						UNIVERSITY OF CENTRAL PUNJAB\n";
+
     // Title
     setColor(11);
     cout << "\n					=========================================\n";
     cout << "        		 			     GUESS AND SURVIVE\n";
-    cout << "           					     HANGMAN GAME\n";
+    cout << "           					        HANGMAN GAME\n";
     cout << "					=========================================\n\n";
 
     // Hanging Wood & Rope ASCII Art
@@ -46,9 +60,14 @@ int main() {
     cout << "A Hangman word guessing game.\n";
     cout << "Guess the hidden word before it's too late!\n\n";
 
+	setColor(6);
+	cout << "    * BCCS-B1\n";
+    cout << "    * FALL 2025\n"<<endl;
+
     // Credits
     setColor(14);
     cout << "Presented By:\n\n";
+    
     setColor(13);
     cout << "    * Ibtihaj Muhammad\n";
     cout << "    * Muhammad Zazaan Qazi\n";
@@ -79,10 +98,12 @@ int main() {
         cout << "\nCurrent word: " << guessedWord << endl;
         cout << "Enter your guess (single letter): ";
         setColor(7); // Reset to default color
+         
         
-        char guess;
-        cin >> guess;
-        guess = tolower(guess);
+     char guess;
+	guess = _getch();              // Takes input instantly (no Enter needed)
+	cout << guess << endl;         // Show the typed character on screen
+	guess = tolower(guess);	
 
         // Check if the letter was already guessed
         if (find(guessedLetters.begin(), guessedLetters.end(), guess) != guessedLetters.end()) {
@@ -112,7 +133,10 @@ int main() {
             consecutiveWrong++;
             setColor(3);
             cout << "Sorry, the letter '" << guess << "' is not in the word." << endl;
-            cout << "Incorrect guesses: " << incorrectGuesses << "/" << maxIncorrectGuesses << endl;
+            
+            cout << "Incorrect guesses: ";
+            setColor(4);
+			cout<< incorrectGuesses << "/" << maxIncorrectGuesses << endl;
             setColor(7); // Reset to default color
 
             // Deal offer after 2 consecutive wrong guesses
@@ -124,7 +148,9 @@ int main() {
                 cout << "Enter 1 for YES (accept deal) or 2 for NO (reject deal): ";
                 setColor(7); // Reset to default color
                 int dealChoice;
-                cin >> dealChoice;
+				dealChoice = _getch();     // take input instantly (no Enter)
+				cout << dealChoice << endl; // show the pressed key
+				dealChoice -= '0';  
 
                 if (dealChoice == 1) {
                     // Find an unrevealed letter
@@ -141,6 +167,7 @@ int main() {
                             setColor(13);
                             cout << "Letter revealed: '" << revealedLetter << "'" << endl;
                             incorrectGuesses += 2; // Cost: 2 lives
+                            setColor(4);
                             cout << "You now have " << incorrectGuesses << "/" << maxIncorrectGuesses << " incorrect guesses." << endl;
                             
                             break;
@@ -155,26 +182,6 @@ int main() {
                 }
             }
 
-            // Hint after 3 wrong moves (if deal was rejected)
-            if (incorrectGuesses == 3 && !hintGiven) {
-                cout << "\n*** HINT TIME ***" << endl;
-                cout << "Decode this phrase to get a hint letter:" << endl;
-                // Find an unrevealed letter for the hint
-                char hintLetter = '\0';
-                for (size_t i = 0; i < secretWord.length(); ++i) {
-                    if (guessedWord[i] == '_') {
-                        hintLetter = secretWord[i];
-                        break;
-                    }
-                }
-                if (hintLetter != '\0') {
-                	setColor(12);
-                    cout << "The next vowel or consonant you need is: '" << hintLetter << "'" << endl;
-                    cout << "(This is just a hint - you still need to guess it!)" << endl;
-                    setColor(7); // Reset to default color
-                }
-                hintGiven = true;
-            }
         }
     }
 
