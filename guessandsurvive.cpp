@@ -90,8 +90,10 @@ int main() {
     bool hintGiven = false;
 
     setColor(4); // Red color
-    cout << "\nYou have " << maxIncorrectGuesses << " incorrect guesses allowed." << endl;
-    setColor(7); // Reset to default color
+	cout << "\nYou have " << maxIncorrectGuesses << " incorrect guesses allowed." << endl;
+	setColor(11);
+	cout << "The word has " << secretWord.length() << " letters." << endl;
+	setColor(7); // Reset to default color	
 
     while (incorrectGuesses < maxIncorrectGuesses && guessedWord != secretWord) {
     	setColor(10);
